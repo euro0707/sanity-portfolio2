@@ -1,0 +1,17 @@
+# Ignore rules for gitleaks
+
+# Example env files (these are not real secrets)
+.env.example
+.env.template
+
+# Test files with mock data
+**/*test*
+**/*mock*
+**/*example*
+
+# Common false positives
+**/node_modules/**
+**/.git/**
+**/dist/**
+**/build/**
+**/.next/**

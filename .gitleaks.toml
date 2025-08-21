@@ -1,0 +1,61 @@
+# Gitleaks configuration for Neo Portfolio
+title = "Neo Portfolio Security Scanner"
+
+[extend]
+# Use default rules
+useDefault = true
+
+[[rules]]
+id = "env-files"
+description = "Detect .env files with secrets"
+regex = '''(?i)(api_key|api_secret|access_token|auth_token|secret_key|private_key|password|pwd|client_secret|github_token|sanity_token)\s*[=:]\s*["\']?[a-zA-Z0-9_\-\.]{8,}["\']?'''
+path = '''\.env.*'''
+tags = ["env", "secret"]
+
+[[rules]]
+id = "hardcoded-secrets"
+description = "Detect hardcoded secrets in code"
+regex = '''(?i)(api_key|api_secret|access_token|auth_token|secret_key|private_key|password|pwd|client_secret)\s*[=:]\s*["\'][a-zA-Z0-9_\-\.]{16,}["\']'''
+tags = ["hardcoded", "secret"]
+
+[[rules]]
+id = "github-token"
+description = "GitHub personal access token"
+regex = '''(?i)github.*[=:]\s*["\']?ghp_[a-zA-Z0-9_]{36}["\']?'''
+tags = ["github", "token"]
+
+[[rules]]
+id = "sanity-token"
+description = "Sanity API token"
+regex = '''(?i)sanity.*[=:]\s*["\']?sk[a-zA-Z0-9_]{40,}["\']?'''
+tags = ["sanity", "token"]
+
+[allowlist]
+description = "Allow test files and examples"
+paths = [
+    '''\.env\.example$''',
+    '''\.env\.template$''',
+    '''test/.*''',
+    '''tests/.*''',
+    '''__tests__/.*''',
+    '''\.test\..*''',
+    '''\.spec\..*''',
+    '''mock.*''',
+    '''example.*''',
+    '''node_modules/.*''',
+    '''\.git/.*''',
+    '''dist/.*''',
+    '''build/.*''',
+    '''\.next/.*'''
+]
+
+regexes = [
+    '''__replace_me__''',
+    '''your-project-id''',
+    '''your-token-here''',
+    '''example''',
+    '''test''',
+    '''mock''',
+    '''demo''',
+    '''placeholder'''
+]
