@@ -14,14 +14,12 @@
     "@sanity/client": "^7.9.0",
     "@sanity/vision": "^4.5.0",
     "clsx": "^2.1.1",
-    "groq": "^4.5.0",
     "lucide-react": "^0.540.0",
     "next": "15.5.0",
     "next-sanity": "^10.0.13",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.12",
     "zod": "^4.0.17"
   },
   "devDependencies": {
@@ -29,6 +27,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
+    "critters": "^0.0.25",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
     "gitleaks": "^1.0.0",
@@ -37,6 +36,7 @@
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
 }

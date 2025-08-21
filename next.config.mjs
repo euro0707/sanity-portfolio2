@@ -3,13 +3,22 @@ import { randomBytes } from 'crypto'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async headers() {
-    // Generate nonce for inline styles
-    const nonce = randomBytes(16).toString('base64')
+    // More permissive CSP for development
+    const isDev = process.env.NODE_ENV === 'development'
     
-    const csp = [
+    const csp = isDev ? [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval'", // unsafe-eval needed for Next.js dev mode
-      `style-src 'self' 'nonce-${nonce}'`,
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: https:",
+      "font-src 'self' data:",
+      "connect-src 'self' https://api.github.com https://*.sanity.io ws: wss:",
+      "object-src 'none'",
+      "base-uri 'self'"
+    ].join("; ") : [
+      "default-src 'self'",
+      "script-src 'self'",
+      "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self' data:",
       "connect-src 'self' https://api.github.com https://*.sanity.io",
@@ -59,7 +68,6 @@ const nextConfig = {
   
   // Optimize performance
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['@sanity/ui', 'lucide-react']
   },
   

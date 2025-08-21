@@ -1,5 +1,4 @@
 import { createClient } from '@sanity/client'
-import { groq } from 'groq'
 import { ENV } from './env'
 
 export const sanityClient = createClient({
@@ -12,7 +11,7 @@ export const sanityClient = createClient({
 
 // GROQ queries
 export const QUERIES = {
-  ALL_PROJECTS: groq`*[_type == "project"] | order(featured desc, _createdAt desc) {
+  ALL_PROJECTS: `*[_type == "project"] | order(featured desc, _createdAt desc) {
     _id,
     title,
     slug,
@@ -24,7 +23,7 @@ export const QUERIES = {
     _updatedAt
   }`,
   
-  PROJECT_BY_SLUG: groq`*[_type == "project" && slug.current == $slug][0] {
+  PROJECT_BY_SLUG: `*[_type == "project" && slug.current == $slug][0] {
     _id,
     title,
     slug,
@@ -36,7 +35,7 @@ export const QUERIES = {
     _updatedAt
   }`,
   
-  FEATURED_PROJECTS: groq`*[_type == "project" && featured == true] | order(_createdAt desc) {
+  FEATURED_PROJECTS: `*[_type == "project" && featured == true] | order(_createdAt desc) {
     _id,
     title,
     slug,

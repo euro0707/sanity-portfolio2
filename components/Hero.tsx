@@ -20,15 +20,15 @@ export function Hero() {
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Main heading */}
         <div className="mb-8 animate-in">
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-dark-text mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
             Modern
-            <span className="block text-transparent bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text animate-glow">
+            <span className="block text-transparent bg-gradient-to-r from-primary via-accent to-pink-400 bg-clip-text animate-glow">
               Developer
             </span>
             Portfolio
           </h1>
           
-          <p className="text-lg sm:text-xl text-dark-muted max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Showcasing innovative projects with real-time GitHub integration, 
             built with cutting-edge technologies and stunning neon aesthetics.
           </p>
