@@ -20,7 +20,7 @@ try {
   ENV = EnvSchema.parse(envVars)
 } catch (error) {
   if (error instanceof z.ZodError) {
-    const missingVars = error.errors.map(err => err.path.join('.'))
+    const missingVars = error.issues.map((err: z.ZodIssue) => err.path.join('.'))
     throw new Error(`Missing or invalid environment variables: ${missingVars.join(', ')}`)
   }
   throw error

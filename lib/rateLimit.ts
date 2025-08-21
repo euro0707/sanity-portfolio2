@@ -31,6 +31,12 @@ class TTLMap<K, V> {
     return this.store.delete(key)
   }
 
+  clearAll(): void {
+    this.timers.forEach(timer => clearTimeout(timer))
+    this.timers.clear()
+    this.store.clear()
+  }
+
   size(): number {
     return this.store.size
   }
@@ -109,10 +115,5 @@ export function getClientIP(request: Request): string {
 
 // Cleanup function for graceful shutdown
 export function cleanupRateLimit(): void {
-  // Clear all timers
-  rateLimitStore.clear = function() {
-    this.store.clear()
-    this.timers.forEach(timer => clearTimeout(timer))
-    this.timers.clear()
-  }
+  rateLimitStore.clearAll()
 }

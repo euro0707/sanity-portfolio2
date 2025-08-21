@@ -286,48 +286,48 @@ pre code {
 @layer components {
   .btn {
     @apply inline-flex items-center justify-center gap-2;
-    @apply rounded-2 px-4 py-2;
+    @apply rounded-lg px-4 py-2;
     @apply text-sm font-medium;
-    @apply duration-fast transition-all;
+    @apply transition-all duration-150;
     @apply focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
     @apply disabled:pointer-events-none disabled:opacity-50;
     min-height: 44px; /* WCAG touch target size */
   }
 
   .btn-primary {
-    @apply bg-neon-cyan text-dark-bg;
-    @apply hover:bg-neon-cyan/90 hover:shadow-lg;
-    @apply focus-visible:ring-neon-cyan;
+    @apply bg-primary text-background;
+    @apply hover:bg-primary/90 hover:shadow-lg;
+    @apply focus-visible:ring-primary;
   }
 
   .btn-secondary {
-    @apply bg-dark-card border-dark-border text-dark-text border;
-    @apply hover:bg-dark-border hover:border-neon-purple/50;
-    @apply focus-visible:ring-neon-purple;
+    @apply bg-card border text-foreground;
+    @apply hover:bg-border hover:border-accent/50;
+    @apply focus-visible:ring-accent;
   }
 
   .btn-ghost {
-    @apply hover:bg-dark-card/50;
-    @apply focus-visible:ring-dark-border;
+    @apply hover:bg-card/50;
+    @apply focus-visible:ring-border;
   }
 
   .card {
-    @apply bg-dark-card border-dark-border rounded-3 border;
+    @apply bg-card border rounded-xl;
     @apply p-4 md:p-6;
-    @apply duration-normal transition-all;
+    @apply transition-all duration-300;
   }
 
   .card-hover {
-    @apply hover:border-neon-cyan/30 hover:shadow-lg;
-    @apply hover:shadow-neon-cyan/10;
+    @apply hover:border-primary/30 hover:shadow-lg;
+    @apply hover:shadow-primary/10;
   }
 
   .input {
-    @apply bg-dark-card border-dark-border rounded-2 border;
+    @apply bg-card border rounded-lg;
     @apply px-3 py-2 text-sm;
-    @apply placeholder:text-dark-muted;
-    @apply focus:border-neon-cyan focus:ring-neon-cyan focus:ring-1 focus:outline-none;
-    @apply duration-fast transition-colors;
+    @apply placeholder:text-muted-foreground;
+    @apply focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none;
+    @apply transition-colors duration-150;
     min-height: 44px; /* WCAG touch target size */
   }
 }

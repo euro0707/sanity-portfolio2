@@ -81,9 +81,20 @@ export interface ProjectWithGitHub extends Project {
 // Helper functions
 export async function getAllProjects(): Promise<Project[]> {
   try {
-    return await sanityClient.fetch(QUERIES.ALL_PROJECTS)
+    const projects = await sanityClient.fetch(QUERIES.ALL_PROJECTS)
+    // If no projects in Sanity, use mock data for development
+    if (projects.length === 0 && process.env.NODE_ENV === 'development') {
+      const { mockProjects } = await import('./mock-data')
+      return mockProjects
+    }
+    return projects
   } catch (error) {
     console.error('Error fetching projects:', error)
+    // Fallback to mock data in development
+    if (process.env.NODE_ENV === 'development') {
+      const { mockProjects } = await import('./mock-data')
+      return mockProjects
+    }
     return []
   }
 }
