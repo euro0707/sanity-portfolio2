@@ -27,7 +27,7 @@ const GitHubRepoSchema = z.object({
 type GitHubRepo = z.infer<typeof GitHubRepoSchema>
 
 interface CacheEntry {
-  data: any
+  data: GitHubRepo | null
   timestamp: number
   ttl: number
 }
@@ -61,7 +61,7 @@ function parseRepoPath(input: string): string | null {
   }
 }
 
-function getCachedData(key: string): any | null {
+function getCachedData(key: string): GitHubRepo | null {
   const entry = cache.get(key)
   if (!entry) return null
   
@@ -74,7 +74,7 @@ function getCachedData(key: string): any | null {
   return entry.data
 }
 
-function setCachedData(key: string, data: any, ttl: number): void {
+function setCachedData(key: string, data: GitHubRepo | null, ttl: number): void {
   cache.set(key, {
     data,
     timestamp: Date.now(),
