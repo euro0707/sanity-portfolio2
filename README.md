@@ -21,6 +21,31 @@ A cutting-edge portfolio built with Next.js, Sanity CMS, and Tailwind CSS featur
 - **Icons**: Lucide React
 - **Deployment**: Vercel (recommended)
 
+## 📅 Daily Development Workflow
+
+### For Claude Code Sessions
+
+This project includes automated daily setup for consistent development sessions:
+
+```powershell
+# Run daily setup script
+.\scripts\check-date.ps1
+```
+
+This script will:
+- ✅ Confirm today's date
+- ✅ Create daily report directory
+- ✅ Show recent work reports
+- ✅ Check project status
+- ✅ Suggest next steps
+
+### Session Management
+
+1. **Start of Session**: Review `CLAUDE.md` for context
+2. **During Work**: Use TodoWrite tool for task tracking
+3. **End of Session**: Create comprehensive work report
+4. **Commit Changes**: Include 🤖 Generated with Claude Code
+
 ## 🚀 Quick Start
 
 ### Prerequisites
