@@ -1,13 +1,15 @@
 import { createClient } from '@sanity/client'
 import { ENV } from './env'
 
-export const sanityClient = createClient({
-  projectId: ENV.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: ENV.NEXT_PUBLIC_SANITY_DATASET,
-  useCdn: process.env.NODE_ENV === 'production',
-  apiVersion: '2024-01-01',
-  perspective: 'published',
-})
+export const sanityClient = ENV.NEXT_PUBLIC_SANITY_PROJECT_ID && ENV.NEXT_PUBLIC_SANITY_DATASET 
+  ? createClient({
+      projectId: ENV.NEXT_PUBLIC_SANITY_PROJECT_ID,
+      dataset: ENV.NEXT_PUBLIC_SANITY_DATASET,
+      useCdn: process.env.NODE_ENV === 'production',
+      apiVersion: '2024-01-01',
+      perspective: 'published',
+    })
+  : null
 
 // GROQ queries
 export const QUERIES = {
@@ -81,26 +83,35 @@ export interface ProjectWithGitHub extends Project {
 // Helper functions
 export async function getAllProjects(): Promise<Project[]> {
   try {
+    // If Sanity client is not configured, use mock data
+    if (!sanityClient) {
+      console.log('Sanity client not configured, using mock data')
+      const { mockProjects } = await import('./mock-data')
+      return mockProjects
+    }
+    
     const projects = await sanityClient.fetch(QUERIES.ALL_PROJECTS)
     // If no projects in Sanity, use mock data for development
-    if (projects.length === 0 && process.env.NODE_ENV === 'development') {
+    if (projects.length === 0) {
       const { mockProjects } = await import('./mock-data')
       return mockProjects
     }
     return projects
   } catch (error) {
     console.error('Error fetching projects:', error)
-    // Fallback to mock data in development
-    if (process.env.NODE_ENV === 'development') {
-      const { mockProjects } = await import('./mock-data')
-      return mockProjects
-    }
-    return []
+    // Fallback to mock data
+    const { mockProjects } = await import('./mock-data')
+    return mockProjects
   }
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
   try {
+    if (!sanityClient) {
+      console.log('Sanity client not configured, using mock data for slug lookup')
+      const { mockProjects } = await import('./mock-data')
+      return mockProjects.find(p => p.slug.current === slug) || null
+    }
     return await sanityClient.fetch(QUERIES.PROJECT_BY_SLUG, { slug })
   } catch (error) {
     console.error('Error fetching project by slug:', error)
@@ -110,10 +121,16 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 
 export async function getFeaturedProjects(): Promise<Project[]> {
   try {
+    if (!sanityClient) {
+      console.log('Sanity client not configured, using mock featured projects')
+      const { mockProjects } = await import('./mock-data')
+      return mockProjects.filter(p => p.featured)
+    }
     return await sanityClient.fetch(QUERIES.FEATURED_PROJECTS)
   } catch (error) {
     console.error('Error fetching featured projects:', error)
-    return []
+    const { mockProjects } = await import('./mock-data')
+    return mockProjects.filter(p => p.featured)
   }
 }
 
@@ -126,7 +143,13 @@ export async function getProjectWithGitHubData(project: Project): Promise<Projec
     }
 
     const repoName = repoMatch[1]
-    const response = await fetch(`/api/github?repo=${encodeURIComponent(repoName)}`)
+    // Skip GitHub API calls during build time to avoid timeouts
+    if (typeof window === 'undefined' && process.env.NODE_ENV === 'production') {
+      return { ...project }
+    }
+    
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3002'
+    const response = await fetch(`${baseUrl}/api/github?repo=${encodeURIComponent(repoName)}`)
     
     if (!response.ok) {
       console.warn(`Failed to fetch GitHub data for ${repoName}:`, response.status)

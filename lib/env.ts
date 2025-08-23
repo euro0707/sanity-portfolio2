@@ -1,8 +1,8 @@
 import { z } from "zod"
 
 const EnvSchema = z.object({
-  NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(1, "Sanity project ID is required"),
-  NEXT_PUBLIC_SANITY_DATASET: z.string().min(1, "Sanity dataset is required"),
+  NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().optional(),
+  NEXT_PUBLIC_SANITY_DATASET: z.string().optional(),
   NEXT_PUBLIC_BASE_URL: z.string().url().optional(),
   GITHUB_TOKEN: z.string().optional(),
 })
