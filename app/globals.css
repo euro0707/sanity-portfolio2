@@ -360,13 +360,21 @@ pre code {
   }
 }
 
-/* Temporary fix: Hide problematic loading animations */
+/* Fix: Disable all problematic animations */
 @layer utilities {
   .animate-pulse {
     animation: none !important;
   }
   
-  /* Hide loading skeletons that might be stuck */
+  .animate-bounce {
+    animation: none !important;
+  }
+  
+  .animate-spin {
+    animation: none !important;
+  }
+  
+  /* Hide any loading skeletons */
   .loading-skeleton {
     display: none !important;
   }
