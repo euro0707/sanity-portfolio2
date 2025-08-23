@@ -144,11 +144,11 @@ export async function getProjectWithGitHubData(project: Project): Promise<Projec
 
     const repoName = repoMatch[1]
     // Skip GitHub API calls during build time to avoid timeouts
-    if (typeof window === 'undefined' && process.env.NODE_ENV === 'production') {
+    if (typeof window === 'undefined' && process.env.VERCEL_ENV === 'build') {
       return { ...project }
     }
     
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3002'
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3002')
     const response = await fetch(`${baseUrl}/api/github?repo=${encodeURIComponent(repoName)}`)
     
     if (!response.ok) {

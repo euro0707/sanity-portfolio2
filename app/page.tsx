@@ -1,11 +1,11 @@
-import { getAllProjectsWithGitHubData } from '@/lib/sanity'
+import { getAllProjects } from '@/lib/sanity'
 import { ProjectGrid } from '@/components/ProjectGrid'
 import { Hero } from '@/components/Hero'
 
 export const revalidate = 3600 // Revalidate every hour
 
 export default async function HomePage() {
-  const projects = await getAllProjectsWithGitHubData()
+  const projects = await getAllProjects()
   const featuredProjects = projects.filter(project => project.featured)
 
   return (

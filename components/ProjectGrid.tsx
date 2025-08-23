@@ -1,10 +1,10 @@
 'use client'
 
-import { ProjectCard } from './ProjectCard'
-import { type ProjectWithGitHub } from '@/lib/sanity'
+import { ProjectWithGitHubData } from './ProjectWithGitHubData'
+import { type Project } from '@/lib/sanity'
 
 interface ProjectGridProps {
-  projects: ProjectWithGitHub[]
+  projects: Project[]
 }
 
 export function ProjectGrid({ projects }: ProjectGridProps) {
@@ -28,7 +28,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
           className="animate-in"
           style={{ animationDelay: `${index * 0.1}s` }}
         >
-          <ProjectCard project={project} />
+          <ProjectWithGitHubData project={project} />
         </div>
       ))}
     </div>

@@ -7,9 +7,10 @@ import { ExternalLink, Star, GitFork, Calendar, Code } from 'lucide-react'
 
 interface ProjectCardProps {
   project: ProjectWithGitHub
+  loading?: boolean
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, loading = false }: ProjectCardProps) {
   const { githubData } = project
   const hasGitHubData = !!githubData
 

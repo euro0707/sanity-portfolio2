@@ -5,7 +5,7 @@ export const mockProjects = [
     title: "Neo Portfolio 2",
     slug: { current: "neo-portfolio-2" },
     description: "A modern portfolio built with Next.js, Sanity CMS, and Tailwind CSS featuring real-time GitHub integration and stunning dark neon aesthetics.",
-    githubUrl: "https://github.com/euro0707/sanity-portfolio2",
+    githubUrl: "https://github.com/euro0707/-PriceBotX",
     featured: true,
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity CMS", "GitHub API"],
     _createdAt: "2025-08-21T04:00:00Z",
