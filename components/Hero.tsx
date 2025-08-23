@@ -74,12 +74,6 @@ export function Hero() {
           ))}
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-neon-cyan/50 rounded-full p-1">
-            <div className="w-1 h-3 bg-neon-cyan rounded-full mx-auto animate-pulse" />
-          </div>
-        </div>
       </div>
     </section>
   )
