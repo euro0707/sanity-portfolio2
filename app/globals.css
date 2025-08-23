@@ -331,3 +331,15 @@ pre code {
     min-height: 44px; /* WCAG touch target size */
   }
 }
+
+/* Temporary fix: Hide problematic loading animations */
+@layer utilities {
+  .animate-pulse {
+    animation: none !important;
+  }
+  
+  /* Hide loading skeletons that might be stuck */
+  .loading-skeleton {
+    display: none !important;
+  }
+}
