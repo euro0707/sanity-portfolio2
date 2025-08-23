@@ -17,6 +17,20 @@ const config: Config = {
         primary: "var(--primary)",
         accent: "var(--accent)",
         "muted-foreground": "var(--muted-foreground)",
+        
+        // Neon theme colors
+        "neon-cyan": "var(--neon-cyan)",
+        "neon-purple": "var(--neon-purple)",
+        "neon-green": "var(--neon-green)",
+        "neon-yellow": "var(--neon-yellow)",
+        "neon-pink": "var(--neon-pink)",
+        
+        // Dark theme colors
+        "dark-bg": "var(--dark-bg)",
+        "dark-card": "var(--dark-card)",
+        "dark-text": "var(--dark-text)",
+        "dark-muted": "var(--dark-muted)",
+        "dark-border": "var(--dark-border)",
       },
     },
   },

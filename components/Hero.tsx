@@ -48,7 +48,7 @@ export function Hero() {
           <Button 
             size="lg" 
             variant="secondary"
-            onClick={() => window.open('https://github.com', '_blank')}
+            onClick={() => window.open('https://github.com/euro0707', '_blank')}
           >
             GitHub Profile
           </Button>

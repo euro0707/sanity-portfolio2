@@ -33,6 +33,20 @@
   --primary-foreground: #ffffff;
   --accent: #a855f7;
   --accent-foreground: #ffffff;
+  
+  /* Neon colors for light theme */
+  --neon-cyan: #00e5ff;
+  --neon-purple: #a855f7;
+  --neon-green: #00ff87;
+  --neon-yellow: #ffec8c;
+  --neon-pink: #ff6ec7;
+  
+  /* Dark theme text colors */
+  --dark-bg: #0b0f14;
+  --dark-card: #0f1620;
+  --dark-text: #e6edf3;
+  --dark-muted: #94a3b8;
+  --dark-border: #21262d;
 }
 
 /* Dark theme with high contrast neon colors */
@@ -47,6 +61,20 @@
   --primary-foreground: #0b0f14;
   --accent: #a78bfa;
   --accent-foreground: #0b0f14;
+  
+  /* Enhanced neon colors for dark theme */
+  --neon-cyan: #6ee7ff;
+  --neon-purple: #a78bfa;
+  --neon-green: #4ade80;
+  --neon-yellow: #fbbf24;
+  --neon-pink: #f472b6;
+  
+  /* Dark theme specific colors */
+  --dark-bg: #0b0f14;
+  --dark-card: #0f1620;
+  --dark-text: #e6edf3;
+  --dark-muted: #94a3b8;
+  --dark-border: #1e293b;
 }
 
 /* Prefer dark mode by default */
